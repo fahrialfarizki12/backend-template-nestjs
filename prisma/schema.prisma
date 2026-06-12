@@ -1,0 +1,21 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../prisma/generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Users {
+  id String @id @default(uuid())
+  email String @unique
+  username String
+  password String
+  verify Int @default(0)
+  otpCode String?
+  otpExpiredAt DateTime?
+  createAt DateTime @default(now())
+}

@@ -1,0 +1,164 @@
+<html lang='id'>
+  <head>
+    <meta charset='UTF-8' />
+  </head>
+  <body
+    style='
+      margin:0;
+      padding:0;
+      background-color:#f4f6f9;
+      font-family:Arial, Helvetica, sans-serif;
+    '
+  >
+    <table width='100%' cellpadding='0' cellspacing='0' style='padding:40px 0;'>
+      <tr>
+        <td align='center'>
+
+          <table
+            width='600'
+            cellpadding='0'
+            cellspacing='0'
+            style='
+              background:#ffffff;
+              border-radius:12px;
+              overflow:hidden;
+              box-shadow:0 4px 12px rgba(0,0,0,0.08);
+            '
+          >
+            <!-- Header -->
+            <tr>
+              <td
+                align='center'
+                style='
+                  background:#2563eb;
+                  color:white;
+                  padding:30px;
+                '
+              >
+
+                <h1 style='margin:0;'>Verifikasi Akun</h1>
+              </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+              <td style='padding:40px;'>
+                <h2
+                  style='
+                    margin-top:0;
+                    color:#111827;
+                  '
+                >
+                  Halo,
+                  {{username}}
+                  👋
+                </h2>
+                <p
+                  style='
+                    color:#4b5563;
+                    line-height:1.8;
+                    font-size:15px;
+                  '
+                >
+                  Terima kasih telah mendaftar di platform kami. Silakan
+                  verifikasi akun Anda terlebih dahulu untuk mengaktifkan akun
+                  dan menggunakan seluruh layanan yang tersedia.
+                </p>
+                <p
+                  style='
+                    color:#4b5563;
+                    line-height:1.8;
+                    font-size:15px;
+                  '
+                >Silakan click link berikut untuk verifikasi akun Anda:
+                  <a href='{{url}}'>Verifikasi akun</a></p>
+
+                <div
+                  style='
+                    text-align:center;
+                    margin:35px 0;
+                  '
+                >
+                  <p
+                    style='
+                      margin-bottom:10px;
+                      color:#6b7280;
+                    '
+                  >
+                    Kode OTP Anda
+                  </p>
+
+                  <div
+                    style='
+                      display:inline-block;
+                      background:#eff6ff;
+                      border:2px dashed #2563eb;
+                      padding:15px 30px;
+                      border-radius:10px;
+                      font-size:32px;
+                      font-weight:bold;
+                      letter-spacing:8px;
+                      color:#2563eb;
+                    '
+                  >
+                    {{otp}}
+                  </div>
+                </div>
+
+                <p
+                  style='
+                    text-align:center;
+                    color:#dc2626;
+                    font-weight:bold;
+                  '
+                >
+                  OTP berlaku selama
+                  {{otpExp}}
+                  menit.
+                </p>
+
+                <hr
+                  style='
+                    border:none;
+                    border-top:1px solid #e5e7eb;
+                    margin:30px 0;
+                  '
+                />
+
+                <p
+                  style='
+                    color:#6b7280;
+                    font-size:14px;
+                    line-height:1.6;
+                  '
+                >
+                  Jika Anda tidak merasa melakukan pendaftaran akun, abaikan
+                  email ini. Jangan bagikan kode OTP kepada siapa pun, termasuk
+                  pihak yang mengatasnamakan admin.
+                </p>
+
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                align='center'
+                style='
+                  background:#f9fafb;
+                  padding:20px;
+                  color:#6b7280;
+                  font-size:13px;
+                '
+              >
+                © 2026 Aisnexa. All rights reserved.
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
