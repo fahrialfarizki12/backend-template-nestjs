@@ -168,6 +168,14 @@ export class AuthService {
     if (findEmail.verify === 1) {
       throw new BadRequestException('Akun ini sebelumnya sudah di verifikasi');
     }
+
+    //cek jika otp belum expired maka tidak boleh resend email
+    if (findEmail.otpExpiredAt! > new Date()) {
+      throw new BadRequestException(
+        'OTP sebelumnya belum expired, silahkan tunggu 5 menit',
+      );
+    }
+
     //generate otp
     const otp = otpHelper.generatorOtp();
     const otpExpired = new Date(Date.now() + 5 * 60 * 1000); // 5 menit expired code
@@ -177,7 +185,7 @@ export class AuthService {
       expiresIn: '5m',
     });
     //create url frontend
-    const url_frontend = `${process.env.CLIENT_HOST}/auth/resend-otp?token=${token}`;
+    const url_frontend = `${process.env.CLIENT_HOST}/auth/verify?token=${token}`;
 
     //update otp expired
     await this.prisma.users.update({
@@ -213,6 +221,7 @@ export class AuthService {
     if (!findEmail) {
       throw new BadRequestException('Mohon maaf akun tidak ditemukan');
     }
+
     //buat sebuah token dan url
     //create token
     const payload = { email: findEmail.email };
@@ -220,7 +229,7 @@ export class AuthService {
       expiresIn: '5m',
     });
     //create url frontend
-    const url_frontend = `${process.env.CLIENT_HOST}/auth/forgot-password?token=${token}`;
+    const url_frontend = `${process.env.CLIENT_HOST}/auth/reset-password?token=${token}`;
 
     //kirim sebuah mail sender
     await this.mail.sendMailService({
@@ -259,6 +268,12 @@ export class AuthService {
     if (!findEmail) {
       throw new BadRequestException('Mohon maaf akun tidak ditemukan');
     }
+
+    //cek apakah akun aktif atau tidak
+    if (findEmail.verify === 0) {
+      throw new BadRequestException('Mohon maaf akun belum di verifikasi');
+    }
+
     //cek apakah password sama dengan confirm password
     if (body.password !== body.confirmPassword) {
       throw new BadRequestException(
